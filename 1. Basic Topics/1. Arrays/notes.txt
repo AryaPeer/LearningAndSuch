@@ -1,0 +1,69 @@
+Python Array Syntax: 
+
+scores_of_students = [86, 76, 67, 98, 95]
+
+boys_and_girls_of_classes = [[10,23], [20,20], [15,12], [13,16]]
+
+basketball_matches = [[0, 76, 86, 100],
+                       [56, 0, 87, 65],
+                       [65, 34, 0, 86],
+                       [72, 65, 78, 0]]
+
+Functions:          
+max(scores_of_students)
+min(scores_of_students)
+sum(scores_of_students)
+scores_of_students.sort()
+
+
+boys_and_girls_of_classes.sort(): We have two elements in each entry this time. In python the pre-built sort() sorts by the first element, then the second element, then the third (if it exists) etc...
+
+boys_and_girls_of_classes.sort(key = lambda Class : Class[1]): We can use the key parameter to change the sort() behaviour. We declare that we want to look at the number of girls FIRST in each Class in this case. There are more advanced application of sort, and we will learn them in harder problems.
+
+list(map(lambda Class: Class[0] + Class[1], boys_and_girls_of_classes)): This returns the list of the class size of each size. It is useful if we want to know the total number of students in each class.
+
+C++ Array Syntax:
+
+vector<int> scores_of_students = {86, 76, 67, 98, 95};
+vector<vector<int>> boys_and_girls_of_classes = {{10,23}, {20,20}, {15,12}, {13,16}};
+vector<vector<int>> basketball_matches = {{0, 76, 86, 100},
+                                          {56, 0, 87, 65},
+                                          {65, 34, 0, 86},
+                                          {72, 65, 78, 0}};
+
+Functions:
+#include <algorithm>
+#include <vector>
+
+int max_score = *std::max_element(scores_of_students.begin(), scores_of_students.end());
+
+int min_score = *std::min_element(scores_of_students.begin(), scores_of_students.end());
+
+#include <numeric>
+int total_score = std::accumulate(scores_of_students.begin(), scores_of_students.end(), 0);
+
+std::sort(scores_of_students.begin(), scores_of_students.end());
+
+
+2D Array: 
+
+std::sort(boys_and_girls_of_classes.begin(), boys_and_girls_of_classes.end());
+
+std::sort(boys_and_girls_of_classes.begin(), boys_and_girls_of_classes.end(),
+          [](const std::vector<int>& a, const std::vector<int>& b) {
+              return a[1] < b[1];
+          });
+
+std::vector<int> class_sizes;
+std::transform(boys_and_girls_of_classes.begin(), boys_and_girls_of_classes.end(),
+               std::back_inserter(class_sizes),
+               [](const std::vector<int>& c) { return c[0] + c[1]; });
+
+
+Operation	        Complexity	
+Look-up (Access)	    O(1)	
+Add	                    O(1)
+Pop	                    O(1)	
+Insert	                O(N)
+Remove	                O(N)	
+Length	                O(1)
